@@ -72,6 +72,7 @@ MAWowSoundsCustom = {
 	1868516, -- voidstrider
 	564378, 564383, 564422, 564536, 564544, 564560, -- worgen
 	564798, 564799, 564800, 564801, 564802, 564803, 564804, 564805, 564806, -- xt002
+	838903, 838905, 838907, 838909, 838911, 838913, 838915, 838917, 838919, 838921 -- pterodactyl
 
 	-- doodad
 	565853, 566027, 566564, -- bell tolls
@@ -118,25 +119,20 @@ end
 
 local function MuteAllSounds()
    count = 0
-   customcount = 0
    if MAWowSoundsCustom ~= nil then
       for _, soundID in pairs (MAWowSoundsCustom) do
          MuteSoundFile(soundID)
-         customcount = customcount + 1
       end
    end
-   return count, customcount
+   return count
 end
 
 local MuteAnnoyingWoWSoundsCore = CreateFrame("Frame", "MuteAnnoyingWoWSoundsCore")
 MuteAnnoyingWoWSoundsCore:RegisterEvent("PLAYER_LOGIN")
 MuteAnnoyingWoWSoundsCore:SetScript("OnEvent",
   function(self, event, ...)
-   local count, customcount = MuteAllSounds()
-   if customcount > 0 then
-      MAWS_Print(count+customcount.." sounds have been muted. ("..customcount.." custom sounds)")
-   else 
-      MAWS_Print(count.." Sounds have been muted.")
+   local count = MuteAllSounds()
+    MAWS_Print(count.." Sounds have been muted.")
    end
 end)
 
