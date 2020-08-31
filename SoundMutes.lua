@@ -121,7 +121,8 @@ local function MuteAllSounds()
    count = 0
    if MAWowSoundsCustom ~= nil then
       for _, soundID in pairs (MAWowSoundsCustom) do
-         MuteSoundFile(soundID)
+		 MuteSoundFile(soundID)
+		 count = count + 1
       end
    end
    return count
@@ -132,7 +133,5 @@ MuteAnnoyingWoWSoundsCore:RegisterEvent("PLAYER_LOGIN")
 MuteAnnoyingWoWSoundsCore:SetScript("OnEvent",
   function(self, event, ...)
    local count = MuteAllSounds()
-    MAWS_Print(count.." Sounds have been muted.")
-   end
+   MAWS_Print(count.." Sounds have been muted.")
 end)
-
